@@ -246,7 +246,7 @@ a {
   border: none;
   border-radius: 18px;
   background: var(--accent);
-  color: white;
+  color: var(--bg-soft);
   font-weight: 700;
 }
 
@@ -332,7 +332,7 @@ a {
   padding: 0 16px;
   border-radius: 14px;
   background: var(--accent);
-  color: #fff;
+  color: var(--bg-soft);
   text-decoration: none;
   font-weight: 700;
 }
@@ -386,7 +386,7 @@ a {
 
 .nav-btn.active {
   background: var(--accent);
-  color: white;
+  color: var(--bg-soft);
   border-color: var(--accent);
 }
 
