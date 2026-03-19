@@ -8,20 +8,26 @@ const detailContent = {
       "건물 위치가 바로 떠오르지 않아도 괜찮아요. 학교 공식 캠퍼스맵에서 도서관 위치를 바로 열 수 있어요.",
     mapUrl:
       "https://www.postech.ac.kr/kor/university-introduction/campus_map.do?id=72&lat=36.01281262037587&lng=129.32512678407213",
+    guideUrl:
+      "https://library.postech.ac.kr/about/library-use-guide/byuser-guide/undergraduate-student/",
+    guideLabel: "학부생 공식 안내 보기",
     audience: [
       "혼자 오래 집중하고 싶은 사람",
       "프린트와 복사를 자주 해야 하는 사람",
       "조용한 곳과 가벼운 협업 공간을 둘 다 알고 싶은 사람",
     ],
     checklist: [
-      "책 있는 곳 좌석과 예약 좌석을 구분해서 보기",
-      "예약 후 30분 내 입실 규칙 기억하기",
+      "3~5층 출입 시 학생증 태그 또는 POSTECH ID App QR 준비하기",
+      "좌석·시설은 좌석예약 시스템에서 예약 후 이용하는 흐름 먼저 익히기",
       "5층 프린트실과 PC존 위치를 먼저 익혀두기",
     ],
     official: [
       "2층 08:00-22:00 / 3층 08:00-00:00 / 4층 24시간 / 5층 08:00-02:00",
-      "온라인 좌석 예약 시스템 사용",
+      "시험기간 3주 동안은 2층과 5층도 02:00까지, 3층과 4층은 24시간 운영",
+      "3~5층은 구성원 전용 공간이라 학생증 태그가 필요하고 POSTECH ID App QR로도 출입 가능",
+      "좌석·시설은 도서관 좌석예약 시스템을 통해 예약 후 이용",
       "프린트실은 도서관 5층, 흑백 50원 / 컬러 300원",
+      "단행본은 10책 30일 대출 가능",
     ],
     field: [
       "3, 4층 책 있는 곳 안 좌석은 그냥 쓸 수 있는 구역이 있다",
@@ -38,6 +44,8 @@ const detailContent = {
       "복사실처럼 자주 쓰는 위치는 이 화면에서 먼저 이해하고, 상세 위치는 공식 캠퍼스맵으로 바로 열어볼 수 있어요.",
     mapUrl:
       "https://www.postech.ac.kr/kor/university-introduction/campus_map.do?id=82&lat=36.01279423952061&lng=129.3250683574527",
+    guideUrl: "",
+    guideLabel: "",
     audience: [
       "과제 제출 직전에 급하게 출력해야 하는 사람",
       "건물마다 인쇄 가능 여부가 헷갈리는 사람",
@@ -68,6 +76,8 @@ const detailContent = {
       "체육관 위치는 공식 캠퍼스맵으로 바로 열 수 있고, 이 화면에서는 어떤 시설을 왜 써야 하는지 먼저 이해할 수 있어요.",
     mapUrl:
       "https://www.postech.ac.kr/kor/university-introduction/campus_map.do?id=84&lat=36.01885118904603&lng=129.32309475622765",
+    guideUrl: "",
+    guideLabel: "",
     audience: [
       "돈 들이지 않고 먼저 운동 시작해보고 싶은 사람",
       "풋살장이나 체육관 규칙이 헷갈리는 사람",
@@ -98,6 +108,8 @@ const detailContent = {
       "이 화면은 건물 위치보다 바로 쓸 수 있는 학생 혜택을 먼저 정리해 주는 역할이에요. 관련 건물은 학생회관 위치를 기준으로 바로 볼 수 있어요.",
     mapUrl:
       "https://www.postech.ac.kr/kor/university-introduction/campus_map.do?id=88&lat=36.012960118126685&lng=129.320692713",
+    guideUrl: "",
+    guideLabel: "",
     audience: [
       "학생 계정으로 쓸 수 있는 툴을 놓치고 싶지 않은 사람",
       "혜택 정보를 단톡에서 흘려보내지 않고 모아보고 싶은 사람",
@@ -128,6 +140,8 @@ const detailContent = {
       "건물 자체 위치는 캠퍼스맵이 더 정확하고, 이 화면은 ‘어떻게 가면 덜 헤매는지’ 같은 생활 맥락을 보완해 주는 데 집중해요.",
     mapUrl:
       "https://www.postech.ac.kr/kor/university-introduction/campus_map.do",
+    guideUrl: "",
+    guideLabel: "",
     audience: [
       "기숙사와 주요 시설을 오가는 동선을 빨리 익히고 싶은 사람",
       "사소하지만 체감 큰 팁을 미리 알고 싶은 사람",
@@ -157,6 +171,7 @@ const screens = [...document.querySelectorAll(".screen")];
 const navButtons = [...document.querySelectorAll(".nav-btn")];
 const detailLocationText = document.querySelector("#detailLocationText");
 const detailMapLink = document.querySelector("#detailMapLink");
+const detailGuideLink = document.querySelector("#detailGuideLink");
 
 let previousScreen = "home";
 let currentScreen = "home";
@@ -192,6 +207,13 @@ function renderDetail(key) {
   document.querySelector("#detailSummary").textContent = data.summary;
   detailLocationText.textContent = data.location;
   detailMapLink.href = data.mapUrl;
+  if (data.guideUrl) {
+    detailGuideLink.href = data.guideUrl;
+    detailGuideLink.textContent = data.guideLabel || "공식 안내 보기";
+    detailGuideLink.style.display = "inline-flex";
+  } else {
+    detailGuideLink.style.display = "none";
+  }
 
   const pairs = [
     ["#detailAudience", data.audience],

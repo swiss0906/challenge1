@@ -279,6 +279,17 @@ a {
   font-weight: 700;
 }
 
+.map-btn.secondary {
+  background: rgba(255, 255, 255, 0.84);
+  color: var(--accent);
+  border: 1px solid rgba(35, 76, 59, 0.18);
+}
+
+.detail-actions {
+  display: grid;
+  gap: 10px;
+}
+
 .detail-card h3 {
   margin: 0 0 12px;
   font-size: 16px;
@@ -433,5 +444,9 @@ a {
   .location-strip {
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
+  }
+
+  .detail-actions {
+    min-width: 220px;
   }
 }
