@@ -19,6 +19,7 @@
   --chip: rgba(255, 255, 255, 0.72);
   --shell-border: #c8c8c8;
   --accent-border: rgba(31, 31, 31, 0.12);
+  --accent-ink: #f6f6f6;
   --radius-xl: 28px;
   --radius-lg: 22px;
   --radius-md: 16px;
@@ -47,6 +48,7 @@ body[data-theme="dark"] {
   --chip: rgba(40, 40, 40, 0.92);
   --shell-border: #383838;
   --accent-border: rgba(240, 240, 240, 0.16);
+  --accent-ink: #121212;
   --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.34);
   --shadow-md: 0 10px 28px rgba(0, 0, 0, 0.24);
 }
@@ -246,7 +248,7 @@ a {
   border: none;
   border-radius: 18px;
   background: var(--accent);
-  color: var(--bg-soft);
+  color: var(--accent-ink);
   font-weight: 700;
 }
 
@@ -332,7 +334,7 @@ a {
   padding: 0 16px;
   border-radius: 14px;
   background: var(--accent);
-  color: var(--bg-soft);
+  color: var(--accent-ink);
   text-decoration: none;
   font-weight: 700;
 }
@@ -386,7 +388,7 @@ a {
 
 .nav-btn.active {
   background: var(--accent);
-  color: var(--bg-soft);
+  color: var(--accent-ink);
   border-color: var(--accent);
 }
 
