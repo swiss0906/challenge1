@@ -58,14 +58,18 @@
               <strong id="screenTitle">처음엔 다 헷갈릴 수도 있어요</strong>
             </div>
             <div class="top-actions">
-              <button class="theme-toggle" id="themeToggle" type="button" aria-label="다크 모드로 전환">
-                <span id="themeToggleText">Dark</span>
-              </button>
               <button class="ghost-btn" id="backButton" disabled>뒤로</button>
             </div>
           </header>
 
           <section class="screen active" data-screen="home">
+            <div class="search-bar">
+              <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <input type="text" id="searchInput" placeholder="도서관, 인쇄, 운동, 혜택..." autocomplete="off" />
+              <button class="search-clear" id="searchClear" style="display:none" aria-label="지우기">&times;</button>
+              <div class="search-results" id="searchResults" style="display:none"></div>
+            </div>
+
             <div class="hero-card">
               <p class="label">Runner Starter Pack</p>
               <h2>처음엔 다 헷갈릴 수도 있어요. 그래서 먼저 필요한 것부터 모아봤어요.</h2>
@@ -199,6 +203,14 @@
               </div>
             </article>
 
+            <section class="photo-strip-section" id="photoStripSection" style="display:none">
+              <div class="block-header">
+                <h3>현장 사진</h3>
+                <span id="photoCount"></span>
+              </div>
+              <div class="photo-strip" id="photoStrip"></div>
+            </section>
+
             <section class="content-block detail-grid">
               <article class="detail-card">
                 <h3>이런 사람에게 추천</h3>
@@ -225,6 +237,14 @@
                 <ul id="detailField"></ul>
               </article>
             </section>
+
+            <section class="app-recommendations" id="appRecommendations" style="display:none">
+              <div class="block-header">
+                <h3>추천 앱</h3>
+                <span id="appCount"></span>
+              </div>
+              <div id="appList" class="app-list"></div>
+            </section>
           </section>
 
           <nav class="bottom-nav">
@@ -243,6 +263,17 @@
           </nav>
         </div>
       </main>
+    </div>
+
+    <div class="lightbox" id="lightbox" hidden>
+      <button class="lightbox-close" id="lightboxClose" aria-label="닫기">&times;</button>
+      <div class="lightbox-body">
+        <img id="lightboxImg" src="" alt="" />
+        <p class="lightbox-caption" id="lightboxCaption"></p>
+      </div>
+      <button class="lightbox-prev" id="lightboxPrev" aria-label="이전">&lsaquo;</button>
+      <button class="lightbox-next" id="lightboxNext" aria-label="다음">&rsaquo;</button>
+      <div class="lightbox-counter" id="lightboxCounter"></div>
     </div>
 
     <script src="./app-main.js?v=1"></script>

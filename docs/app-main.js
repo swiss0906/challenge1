@@ -1,3 +1,38 @@
+const recommendedApps = [
+  {
+    name: "포식이",
+    desc: "학식 메뉴 확인 & QR 체크인",
+    context: ["library", "life"],
+    ios: "https://apps.apple.com/kr/app/%ED%8F%AC%EC%8B%9D%EC%9D%B4/id1548629051",
+    android: "https://play.google.com/store/apps/details?id=com.poapper.posikyi",
+    web: null,
+  },
+  {
+    name: "POPO",
+    desc: "공간·장비 예약, 동아리 정보",
+    context: ["library", "fitness", "benefits"],
+    ios: null,
+    android: null,
+    web: "https://popo.poapper.club",
+  },
+  {
+    name: "잇츠미",
+    desc: "캠퍼스페이 결제 & 학식 이용",
+    context: ["printing", "benefits", "life"],
+    ios: "https://apps.apple.com/kr/app/%EC%9E%87%EC%B8%A0%EB%AF%B8-itsme/id1512735891",
+    android: "https://play.google.com/store/apps/details?id=id.itsme.mobile",
+    web: null,
+  },
+  {
+    name: "체인지업 그라운드",
+    desc: "그라운드 멤버십 & 시설 예약",
+    context: ["library"],
+    ios: "https://apps.apple.com/kr/app/%EC%B2%B4%EC%9D%B8%EC%A7%80%EC%97%85-%EA%B7%B8%EB%9D%BC%EC%9A%B4%EB%93%9C-%ED%8F%AC%EC%8A%A4%EC%BD%94-%EA%B1%B0%EC%A0%90%EC%98%A4%ED%94%BC%EC%8A%A4/id1572769028",
+    android: "https://play.google.com/store/apps/details?id=com.posco.changeupground",
+    web: null,
+  },
+];
+
 const detailContent = {
   library: {
     category: "공간 이용",
@@ -39,6 +74,25 @@ const detailContent = {
       "플러그는 바닥 쪽이라 처음엔 놓치기 쉽다",
       "릴렉스존과 얼음정수기가 있어 오래 머무르기 좋다",
     ],
+    photos: [
+      { src: "library-free-seat", caption: "예약 안 해도 되는 좌석", group: "도서관" },
+      { src: "library-free-seat-plug", caption: "자유석 플러그", group: "도서관" },
+      { src: "library-reserved-seat", caption: "예약 좌석", group: "도서관" },
+      { src: "library-relax-zone", caption: "릴렉스존", group: "도서관" },
+      { src: "library-ice-water", caption: "얼음 정수기", group: "도서관" },
+      { src: "library-pc-zone", caption: "PC존", group: "도서관" },
+      { src: "library-pc-zone-info", caption: "PC존 이용 안내", group: "도서관" },
+      { src: "ground-private-seat", caption: "프라이빗 좌석", group: "그라운드" },
+      { src: "ground-private-seat-2", caption: "프라이빗 좌석", group: "그라운드" },
+      { src: "ground-work-cube", caption: "워크큐브", group: "그라운드" },
+      { src: "ground-work-cube-2", caption: "워크큐브", group: "그라운드" },
+      { src: "ground-seat-tutoring", caption: "좌석에서 과외", group: "그라운드" },
+      { src: "ground-seat-rules", caption: "좌석 이용 수칙", group: "그라운드" },
+      { src: "ground-wireless-charger", caption: "무선 충전기", group: "그라운드" },
+      { src: "ground-massage-chair", caption: "안마의자", group: "그라운드" },
+      { src: "ground-air-fryer", caption: "에어프라이어", group: "그라운드" },
+      { src: "ground-ice-maker", caption: "제빙기", group: "그라운드" },
+    ],
   },
   printing: {
     category: "인쇄",
@@ -71,6 +125,10 @@ const detailContent = {
       "처음에는 프린트실 위치가 잘 안 보일 수 있다",
       "C5에서 바로 출력이 안 되는 상황을 대비한 대안 동선이 필요하다",
       "어디서 인쇄할지보다 어디가 가장 확실한지 먼저 알려주는 방식이 유용하다",
+    ],
+    photos: [
+      { src: "library-pc-zone", caption: "PC존", group: "프린트실" },
+      { src: "library-pc-zone-info", caption: "PC존 이용 안내", group: "프린트실" },
     ],
   },
   fitness: {
@@ -171,13 +229,14 @@ const detailContent = {
       "시설 상태나 불편 포인트는 공식 정보보다 현장 정보 가치가 크다",
       "처음 온 사람은 ‘지도’보다 ‘이렇게 가면 덜 힘들다’가 더 필요하다",
     ],
+    photos: [
+      { src: "life-dorm-shortcut", caption: "기숙사 오는 지름길", group: "이동 팁" },
+    ],
   },
 };
 
 const screenTitle = document.querySelector("#screenTitle");
 const backButton = document.querySelector("#backButton");
-const themeToggle = document.querySelector("#themeToggle");
-const themeToggleText = document.querySelector("#themeToggleText");
 const screens = [...document.querySelectorAll(".screen")];
 const navButtons = [...document.querySelectorAll(".nav-btn")];
 const detailLocationText = document.querySelector("#detailLocationText");
@@ -188,28 +247,15 @@ const detailToolCard = document.querySelector("#detailToolCard");
 let previousScreen = "home";
 let currentScreen = "home";
 let currentDetail = "library";
-let currentTheme = "light";
 
-function updateThemeButton() {
-  const nextTheme = currentTheme === "light" ? "Dark" : "Light";
-  const ariaLabel =
-    currentTheme === "light" ? "다크 모드로 전환" : "라이트 모드로 전환";
-
-  themeToggleText.textContent = nextTheme;
-  themeToggle.setAttribute("aria-label", ariaLabel);
-}
-
-function applyTheme(theme) {
-  currentTheme = theme;
-  document.body.dataset.theme = theme;
-  localStorage.setItem("postart-theme", theme);
-  updateThemeButton();
+function applySystemTheme() {
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  document.body.dataset.theme = prefersDark ? "dark" : "light";
 }
 
 function initializeTheme() {
-  const savedTheme = localStorage.getItem("postart-theme");
-  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  applyTheme(savedTheme || (prefersDark ? "dark" : "light"));
+  applySystemTheme();
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", applySystemTheme);
 }
 
 function setScreen(name) {
@@ -225,7 +271,7 @@ function setScreen(name) {
   });
 
   const titles = {
-    home: "처음엔 다 헷갈릴 수 있어요",
+    home: "처음엔 다 헷갈릴 수도 있어요",
     guide: "필요한 정보를 차근차근 정리했어요",
     detail: detailContent[currentDetail].title,
   };
@@ -264,10 +310,48 @@ function renderDetail(key) {
   });
 
   detailToolCard.style.display = data.tools && data.tools.length ? "block" : "none";
+  renderPhotoStrip(data.photos);
+  renderAppRecommendations(key);
 
   if (currentScreen === "detail") {
     screenTitle.textContent = data.title;
   }
+}
+
+function renderAppRecommendations(detailKey) {
+  var container = document.getElementById("appRecommendations");
+  var apps = recommendedApps.filter(function (app) {
+    return app.context.indexOf(detailKey) !== -1;
+  });
+
+  if (apps.length === 0) {
+    container.style.display = "none";
+    return;
+  }
+
+  container.style.display = "block";
+  document.getElementById("appCount").textContent = apps.length + "개";
+
+  document.getElementById("appList").innerHTML = apps
+    .map(function (app) {
+      var links = "";
+      if (app.ios) {
+        links += '<a href="' + app.ios + '" target="_blank" rel="noreferrer" class="app-link">iOS</a>';
+      }
+      if (app.android) {
+        links += '<a href="' + app.android + '" target="_blank" rel="noreferrer" class="app-link">Android</a>';
+      }
+      if (app.web) {
+        links += '<a href="' + app.web + '" target="_blank" rel="noreferrer" class="app-link">웹사이트</a>';
+      }
+      return (
+        '<div class="app-card">' +
+        '<div class="app-info"><strong>' + app.name + "</strong><p>" + app.desc + "</p></div>" +
+        '<div class="app-links">' + links + "</div>" +
+        "</div>"
+      );
+    })
+    .join("");
 }
 
 document.querySelectorAll("[data-open-screen]").forEach((button) => {
@@ -289,9 +373,188 @@ backButton.addEventListener("click", () => {
   setScreen(target);
 });
 
-themeToggle.addEventListener("click", () => {
-  applyTheme(currentTheme === "light" ? "dark" : "light");
+/* --- Photo Strip & Lightbox --- */
+let lightboxPhotos = [];
+let lightboxIndex = 0;
+
+function renderPhotoStrip(photos) {
+  const section = document.getElementById("photoStripSection");
+  const strip = document.getElementById("photoStrip");
+  const count = document.getElementById("photoCount");
+
+  if (!photos || photos.length === 0) {
+    section.style.display = "none";
+    return;
+  }
+
+  section.style.display = "block";
+  count.textContent = photos.length + "장";
+
+  let currentGroup = null;
+  strip.innerHTML = photos
+    .map((photo, i) => {
+      let groupLabel = "";
+      if (photo.group && photo.group !== currentGroup) {
+        currentGroup = photo.group;
+        groupLabel = '<span class="photo-group-label">' + photo.group + "</span>";
+      }
+      return (
+        groupLabel +
+        '<button class="photo-thumb" data-photo-index="' + i + '" aria-label="' + photo.caption + '">' +
+        '<img src="./photos/thumb/' + photo.src + '.jpg" alt="' + photo.caption + '" loading="lazy" />' +
+        "</button>"
+      );
+    })
+    .join("");
+}
+
+function openLightbox(photos, index) {
+  lightboxPhotos = photos;
+  lightboxIndex = index;
+  showLightboxImage();
+  document.getElementById("lightbox").hidden = false;
+  document.body.style.overflow = "hidden";
+}
+
+function closeLightbox() {
+  document.getElementById("lightbox").hidden = true;
+  document.body.style.overflow = "";
+}
+
+function showLightboxImage() {
+  var photo = lightboxPhotos[lightboxIndex];
+  var img = document.getElementById("lightboxImg");
+  img.src = "./photos/full/" + photo.src + ".jpg";
+  img.alt = photo.caption;
+  document.getElementById("lightboxCaption").textContent = photo.caption;
+  document.getElementById("lightboxCounter").textContent =
+    lightboxIndex + 1 + " / " + lightboxPhotos.length;
+  document.getElementById("lightboxPrev").style.visibility =
+    lightboxIndex > 0 ? "visible" : "hidden";
+  document.getElementById("lightboxNext").style.visibility =
+    lightboxIndex < lightboxPhotos.length - 1 ? "visible" : "hidden";
+}
+
+document.addEventListener("click", function (e) {
+  var thumb = e.target.closest(".photo-thumb");
+  if (thumb) {
+    var idx = parseInt(thumb.dataset.photoIndex, 10);
+    var data = detailContent[currentDetail];
+    openLightbox(data.photos, idx);
+  }
 });
+
+document.getElementById("lightboxClose").addEventListener("click", closeLightbox);
+document.getElementById("lightboxPrev").addEventListener("click", function () {
+  if (lightboxIndex > 0) { lightboxIndex--; showLightboxImage(); }
+});
+document.getElementById("lightboxNext").addEventListener("click", function () {
+  if (lightboxIndex < lightboxPhotos.length - 1) { lightboxIndex++; showLightboxImage(); }
+});
+document.getElementById("lightbox").addEventListener("click", function (e) {
+  if (e.target === this) closeLightbox();
+});
+document.addEventListener("keydown", function (e) {
+  if (document.getElementById("lightbox").hidden) return;
+  if (e.key === "Escape") closeLightbox();
+  if (e.key === "ArrowLeft" && lightboxIndex > 0) { lightboxIndex--; showLightboxImage(); }
+  if (e.key === "ArrowRight" && lightboxIndex < lightboxPhotos.length - 1) { lightboxIndex++; showLightboxImage(); }
+});
+
+/* --- Search --- */
+function buildSearchIndex() {
+  var items = [];
+  Object.keys(detailContent).forEach(function (key) {
+    var d = detailContent[key];
+    var text = [d.title, d.category, d.summary]
+      .concat(d.audience || [])
+      .concat(d.checklist || [])
+      .concat(d.tools || [])
+      .concat(d.official || [])
+      .concat(d.field || [])
+      .join(" ");
+    items.push({ key: key, title: d.title, category: d.category, summary: d.summary, text: text.toLowerCase() });
+  });
+  // Also index recommended apps
+  recommendedApps.forEach(function (app) {
+    items.push({
+      key: app.context[0],
+      title: app.name,
+      category: "추천 앱",
+      summary: app.desc,
+      text: (app.name + " " + app.desc).toLowerCase(),
+      isApp: true,
+    });
+  });
+  return items;
+}
+
+var searchIndex = buildSearchIndex();
+
+var searchInput = document.getElementById("searchInput");
+var searchResults = document.getElementById("searchResults");
+var searchClear = document.getElementById("searchClear");
+
+if (searchInput) {
+  searchInput.addEventListener("input", function () {
+    var q = this.value.trim().toLowerCase();
+    searchClear.style.display = q ? "block" : "none";
+
+    if (!q) {
+      searchResults.style.display = "none";
+      return;
+    }
+
+    var matches = searchIndex.filter(function (item) {
+      return item.text.indexOf(q) !== -1;
+    });
+
+    // Deduplicate by key for non-app items
+    var seen = {};
+    var unique = [];
+    matches.forEach(function (m) {
+      var id = m.isApp ? "app-" + m.title : m.key;
+      if (!seen[id]) {
+        seen[id] = true;
+        unique.push(m);
+      }
+    });
+
+    if (unique.length === 0) {
+      searchResults.innerHTML = '<div class="search-empty">검색 결과가 없습니다</div>';
+    } else {
+      searchResults.innerHTML = unique
+        .map(function (m) {
+          return (
+            '<button class="search-result-item" data-detail="' + m.key + '">' +
+            '<span class="search-cat">' + m.category + "</span>" +
+            "<strong>" + m.title + "</strong>" +
+            "<p>" + m.summary + "</p>" +
+            "</button>"
+          );
+        })
+        .join("");
+    }
+    searchResults.style.display = "block";
+  });
+
+  searchClear.addEventListener("click", function () {
+    searchInput.value = "";
+    searchResults.style.display = "none";
+    searchClear.style.display = "none";
+  });
+
+  searchResults.addEventListener("click", function (e) {
+    var item = e.target.closest("[data-detail]");
+    if (item) {
+      renderDetail(item.dataset.detail);
+      setScreen("detail");
+      searchInput.value = "";
+      searchResults.style.display = "none";
+      searchClear.style.display = "none";
+    }
+  });
+}
 
 initializeTheme();
 renderDetail(currentDetail);
