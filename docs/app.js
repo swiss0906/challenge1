@@ -225,7 +225,7 @@ function setScreen(name) {
   });
 
   const titles = {
-    home: "처음엔 다 헷갈릴 수 있어요",
+    home: "처음엔 다 헷갈릴 수도 있어요",
     guide: "필요한 정보를 차근차근 정리했어요",
     detail: detailContent[currentDetail].title,
   };
