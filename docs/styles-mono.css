@@ -40,7 +40,7 @@ body[data-theme="dark"] {
   --card: rgba(28, 28, 28, 0.94);
   --card-strong: #222222;
   --soft: #252525;
-  --accent: #f0f0f0;
+  --accent: #626262;
   --accent-soft: rgba(38, 38, 38, 0.98);
   --surface: rgba(18, 18, 18, 0.94);
   --surface-strong: rgba(18, 18, 18, 0.98);
@@ -48,7 +48,7 @@ body[data-theme="dark"] {
   --chip: rgba(40, 40, 40, 0.92);
   --shell-border: #383838;
   --accent-border: rgba(240, 240, 240, 0.16);
-  --accent-ink: #121212;
+  --accent-ink: #f7f7f7;
   --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.34);
   --shadow-md: 0 10px 28px rgba(0, 0, 0, 0.24);
 }
@@ -248,7 +248,7 @@ a {
   border: none;
   border-radius: 18px;
   background: var(--accent);
-  color: var(--accent-ink);
+  color: var(--accent-ink) !important;
   font-weight: 700;
 }
 
@@ -334,7 +334,7 @@ a {
   padding: 0 16px;
   border-radius: 14px;
   background: var(--accent);
-  color: var(--accent-ink);
+  color: var(--accent-ink) !important;
   text-decoration: none;
   font-weight: 700;
 }
@@ -388,7 +388,7 @@ a {
 
 .nav-btn.active {
   background: var(--accent);
-  color: var(--accent-ink);
+  color: var(--accent-ink) !important;
   border-color: var(--accent);
 }
 
