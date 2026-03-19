@@ -21,6 +21,11 @@ const detailContent = {
       "좌석·시설은 좌석예약 시스템에서 예약 후 이용하는 흐름 먼저 익히기",
       "5층 프린트실과 PC존 위치를 먼저 익혀두기",
     ],
+    tools: [
+      "도서관 좌석예약 시스템(zzim): 좌석과 시설을 예약할 때 쓰는 웹 서비스",
+      "POSTECH ID App: 도서관 구성원 전용 공간 출입 시 QR로 사용할 수 있음",
+      "학생증: 3~5층 출입 시 태그가 필요할 수 있어 함께 준비해두면 좋음",
+    ],
     official: [
       "2층 08:00-22:00 / 3층 08:00-00:00 / 4층 24시간 / 5층 08:00-02:00",
       "시험기간 3주 동안은 2층과 5층도 02:00까지, 3층과 4층은 24시간 운영",
@@ -56,6 +61,7 @@ const detailContent = {
       "현금이 아닌 카드나 교통카드 결제인지 확인하기",
       "제본이 필요하면 다른 대안 동선도 함께 보기",
     ],
+    tools: [],
     official: [
       "도서관 5층 프린트&복사실 이용 가능",
       "흑백 50원 / 컬러 300원",
@@ -88,6 +94,7 @@ const detailContent = {
       "풋살장은 POVIS 예약과 입장 방식 확인하기",
       "유료 시설은 운영시간과 패키지 구성을 함께 보기",
     ],
+    tools: [],
     official: [
       "대학체육관은 POSTECH 구성원 무료 이용 가능",
       "풋살장은 사용일 기준 15일 안에 예약, 1회 2시간",
@@ -120,6 +127,7 @@ const detailContent = {
       "무료 / 할인 / 신청 필요 여부를 구분해서 보여주기",
       "정보 출처와 마지막 확인 날짜를 함께 표기하기",
     ],
+    tools: [],
     official: [
       "학생 신분으로 접근 가능한 플랫폼과 학교 계정 기반 서비스를 우선 정리",
       "링크, 신청 방식, 필요 계정 정보를 함께 제공",
@@ -152,6 +160,7 @@ const detailContent = {
       "현장 메모와 공식 정보 구분하기",
       "안전성 관련 메모는 별도로 보이게 하기",
     ],
+    tools: [],
     official: [
       "공식 사이트에 없는 정보는 현장 팁으로 명확히 구분",
       "문의가 필요한 정보는 문의 권장으로 분리",
@@ -172,6 +181,7 @@ const navButtons = [...document.querySelectorAll(".nav-btn")];
 const detailLocationText = document.querySelector("#detailLocationText");
 const detailMapLink = document.querySelector("#detailMapLink");
 const detailGuideLink = document.querySelector("#detailGuideLink");
+const detailToolCard = document.querySelector("#detailToolCard");
 
 let previousScreen = "home";
 let currentScreen = "home";
@@ -218,6 +228,7 @@ function renderDetail(key) {
   const pairs = [
     ["#detailAudience", data.audience],
     ["#detailChecklist", data.checklist],
+    ["#detailTools", data.tools || []],
     ["#detailOfficial", data.official],
     ["#detailField", data.field],
   ];
@@ -226,6 +237,8 @@ function renderDetail(key) {
     const root = document.querySelector(selector);
     root.innerHTML = items.map((item) => `<li>${item}</li>`).join("");
   });
+
+  detailToolCard.style.display = data.tools && data.tools.length ? "block" : "none";
 
   if (currentScreen === "detail") {
     screenTitle.textContent = data.title;
