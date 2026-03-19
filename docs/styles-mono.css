@@ -161,8 +161,10 @@ a {
 
 .top-bar strong {
   display: block;
-  font-size: 17px;
+  font-size: 16px;
   line-height: 1.35;
+  letter-spacing: -0.01em;
+  word-break: keep-all;
 }
 
 .ghost-btn,
@@ -182,11 +184,18 @@ a {
   border: 1px solid var(--line);
   background: var(--surface-contrast);
   color: var(--ink);
+  font-size: 13px;
+  font-weight: 600;
+  transition: background 0.15s ease, transform 0.12s ease;
+}
+
+.ghost-btn:not(:disabled):active {
+  transform: scale(0.95);
 }
 
 .theme-toggle {
   flex-shrink: 0;
-  min-width: 74px;
+  min-width: 68px;
   padding: 10px 14px;
   border: 1px solid var(--line);
   border-radius: 999px;
@@ -194,15 +203,46 @@ a {
   color: var(--ink);
   text-align: center;
   font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  transition: background 0.15s ease, transform 0.12s ease;
+}
+
+.theme-toggle:active {
+  transform: scale(0.95);
+}
+
+/* Focus states */
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
 }
 
 .screen {
   display: none;
   padding: 18px 18px 28px;
+  animation: screenIn 0.3s ease both;
 }
 
 .screen.active {
   display: block;
+}
+
+@keyframes screenIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .hero-card,
@@ -225,8 +265,10 @@ a {
 .hero-card h2,
 .detail-hero h2 {
   margin: 0 0 10px;
-  font-size: 28px;
-  line-height: 1.32;
+  font-size: 26px;
+  line-height: 1.36;
+  letter-spacing: -0.02em;
+  word-break: keep-all;
 }
 
 .hero-card p,
@@ -250,6 +292,14 @@ a {
   background: var(--accent);
   color: var(--accent-ink) !important;
   font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.01em;
+  transition: transform 0.12s ease, opacity 0.12s ease;
+}
+
+.primary-btn:active {
+  transform: scale(0.97);
+  opacity: 0.85;
 }
 
 .content-block {
@@ -266,8 +316,10 @@ a {
 
 .block-header h3 {
   margin: 0;
-  font-size: 18px;
+  font-size: 17px;
   line-height: 1.4;
+  letter-spacing: -0.01em;
+  word-break: keep-all;
 }
 
 .block-header span {
@@ -292,6 +344,28 @@ a {
   border-radius: var(--radius-lg);
   padding: 16px;
   color: var(--ink);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.info-card:hover,
+.guide-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.info-card:active,
+.guide-card:active {
+  transform: scale(0.98);
+  box-shadow: var(--shadow-md);
+}
+
+button, a, [role="button"] {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: default;
+  opacity: 0.4;
 }
 
 .info-card strong,
@@ -299,22 +373,30 @@ a {
 .tip-card strong {
   display: block;
   margin-bottom: 6px;
-  font-size: 16px;
-  line-height: 1.45;
+  font-size: 15px;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
   color: var(--ink);
+  word-break: keep-all;
 }
 
 .category-tag {
   margin-bottom: 6px;
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: var(--soft);
+  font-size: 11px;
 }
 
 .location-strip {
   margin-top: 18px;
   display: grid;
   gap: 14px;
-  padding: 14px;
+  padding: 16px;
   border-radius: 20px;
   background: var(--accent-soft);
+  border: 1px solid var(--line);
 }
 
 .location-strip strong {
@@ -337,11 +419,18 @@ a {
   color: var(--accent-ink) !important;
   text-decoration: none;
   font-weight: 700;
+  font-size: 14px;
+  transition: transform 0.12s ease, opacity 0.12s ease;
+}
+
+.map-btn:active {
+  transform: scale(0.97);
+  opacity: 0.85;
 }
 
 .map-btn.secondary {
   background: var(--surface-contrast);
-  color: var(--accent);
+  color: var(--ink) !important;
   border: 1px solid var(--accent-border);
 }
 
@@ -352,7 +441,11 @@ a {
 
 .detail-card h3 {
   margin: 0 0 12px;
-  font-size: 16px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
 }
 
 .detail-card ul {
@@ -360,6 +453,19 @@ a {
   padding-left: 18px;
   color: var(--ink-subtle);
   line-height: 1.72;
+  font-size: 14px;
+}
+
+.detail-card ul li + li {
+  margin-top: 6px;
+}
+
+.detail-card {
+  border-left: 3px solid var(--line);
+}
+
+.detail-card:first-child {
+  border-left-color: var(--accent);
 }
 
 .bottom-nav {
@@ -376,14 +482,30 @@ a {
 }
 
 .nav-btn {
-  min-height: 46px;
-  padding: 12px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-height: 52px;
+  padding: 10px 10px;
   text-align: center;
   border-radius: 16px;
   border: 1px solid var(--line);
   background: var(--surface-contrast);
   color: var(--ink);
   font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  transition: background 0.18s ease, color 0.18s ease, transform 0.12s ease;
+}
+
+.nav-btn:active {
+  transform: scale(0.95);
+}
+
+.nav-btn svg {
+  flex-shrink: 0;
 }
 
 .nav-btn.active {
