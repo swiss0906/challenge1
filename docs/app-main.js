@@ -46,33 +46,17 @@ const detailContent = {
     guideUrl:
       "https://library.postech.ac.kr/about/library-use-guide/byuser-guide/undergraduate-student/",
     guideLabel: "학부생 공식 안내 보기",
-    audience: [
-      "혼자 오래 집중하고 싶은 사람",
-      "프린트와 복사를 자주 해야 하는 사람",
-      "조용한 곳과 가벼운 협업 공간을 둘 다 알고 싶은 사람",
-    ],
     checklist: [
-      "3~5층 출입 시 학생증 태그 또는 POSTECH ID App QR 준비하기",
-      "좌석·시설은 좌석예약 시스템에서 예약 후 이용하는 흐름 먼저 익히기",
-      "5층 프린트실과 PC존 위치를 먼저 익혀두기",
-    ],
-    tools: [
-      "도서관 좌석예약 시스템(zzim): 좌석과 시설을 예약할 때 쓰는 웹 서비스",
-      "POSTECH ID App: 도서관 구성원 전용 공간 출입 시 QR로 사용할 수 있음",
-      "학생증: 3~5층 출입 시 태그가 필요할 수 있어 함께 준비해두면 좋음",
-    ],
-    official: [
-      "2층 08:00-22:00 / 3층 08:00-00:00 / 4층 24시간 / 5층 08:00-02:00",
-      "시험기간 3주 동안은 2층과 5층도 02:00까지, 3층과 4층은 24시간 운영",
-      "3~5층은 구성원 전용 공간이라 학생증 태그가 필요하고 POSTECH ID App QR로도 출입 가능",
-      "좌석·시설은 도서관 좌석예약 시스템을 통해 예약 후 이용",
-      "프린트실은 도서관 5층, 흑백 50원 / 컬러 300원",
-      "단행본은 10책 30일 대출 가능",
+      "학생증 또는 POSTECH ID App QR 준비하기 (3~5층 출입용)",
+      "좌석예약 시스템(zzim) 먼저 가입해두기",
+      "5층 프린트실 위치 확인해두기",
     ],
     field: [
-      "3, 4층 책 있는 곳 안 좌석은 그냥 쓸 수 있는 구역이 있다",
-      "플러그는 바닥 쪽이라 처음엔 놓치기 쉽다",
-      "릴렉스존과 얼음정수기가 있어 오래 머무르기 좋다",
+      "3, 4층 책장 안쪽 좌석은 예약 없이 그냥 앉을 수 있다",
+      "플러그가 바닥 쪽에 숨어 있어서 처음엔 못 찾는 사람이 많다",
+      "릴렉스존에 얼음정수기가 있어서 오래 머무르기 좋다",
+      "4층은 24시간이라 밤에 공부할 때 가장 많이 쓴다",
+      "프린트는 5층, 흑백 50원 / 컬러 300원, 현금 안 됨",
     ],
     photos: [
       { src: "library-free-seat", caption: "예약 안 해도 되는 좌석", group: "도서관" },
@@ -105,26 +89,15 @@ const detailContent = {
       "https://www.postech.ac.kr/kor/university-introduction/campus_map.do?id=82&lat=36.01279423952061&lng=129.3250683574527",
     guideUrl: "",
     guideLabel: "",
-    audience: [
-      "과제 제출 직전에 급하게 출력해야 하는 사람",
-      "건물마다 인쇄 가능 여부가 헷갈리는 사람",
-      "카드 결제 조건 같은 실사용 정보를 미리 알고 싶은 사람",
-    ],
     checklist: [
-      "도서관 5층 프린트실을 기본값으로 기억하기",
-      "현금이 아닌 카드나 교통카드 결제인지 확인하기",
-      "제본이 필요하면 다른 대안 동선도 함께 보기",
-    ],
-    tools: [],
-    official: [
-      "도서관 5층 프린트&복사실 이용 가능",
-      "흑백 50원 / 컬러 300원",
-      "결제는 카드·교통카드 가능, 현금 불가",
+      "도서관 5층 프린트실 위치 먼저 확인하기",
+      "카드 또는 교통카드 준비하기 (현금 불가)",
     ],
     field: [
-      "처음에는 프린트실 위치가 잘 안 보일 수 있다",
-      "C5에서 바로 출력이 안 되는 상황을 대비한 대안 동선이 필요하다",
-      "어디서 인쇄할지보다 어디가 가장 확실한지 먼저 알려주는 방식이 유용하다",
+      "도서관 5층이 가장 확실한 인쇄 장소다",
+      "흑백 50원 / 컬러 300원, 현금은 안 받는다",
+      "처음 가면 프린트실 위치가 잘 안 보인다 — 엘리베이터 나와서 왼쪽",
+      "급할 때 C5에서 출력 안 되면 당황하니까 대안 동선도 알아두면 좋다",
     ],
     photos: [
       { src: "library-pc-zone", caption: "PC존", group: "프린트실" },
@@ -142,26 +115,15 @@ const detailContent = {
       "https://www.postech.ac.kr/kor/university-introduction/campus_map.do?id=84&lat=36.01885118904603&lng=129.32309475622765",
     guideUrl: "",
     guideLabel: "",
-    audience: [
-      "돈 들이지 않고 먼저 운동 시작해보고 싶은 사람",
-      "풋살장이나 체육관 규칙이 헷갈리는 사람",
-      "POSPLEX를 써야 할지 고민하는 사람",
-    ],
     checklist: [
-      "대학체육관 무료 이용 가능 여부 먼저 확인하기",
-      "풋살장은 POVIS 예약과 입장 방식 확인하기",
-      "유료 시설은 운영시간과 패키지 구성을 함께 보기",
-    ],
-    tools: [],
-    official: [
-      "대학체육관은 POSTECH 구성원 무료 이용 가능",
-      "풋살장은 사용일 기준 15일 안에 예약, 1회 2시간",
-      "POSPLEX 운영시간과 문의처는 공식 정보로 확인 가능",
+      "대학체육관은 무료, 별도 신청 없이 가면 된다",
+      "풋살장은 POVIS에서 미리 예약해야 한다",
     ],
     field: [
-      "체력단련실은 특정 수업 시간대에 이용이 제한될 수 있다",
-      "풋살장 입장 방식은 당일 재확인이 안전하다",
-      "장비 상태나 체감 만족도는 현장 정보가 더 유용하다",
+      "체력단련실은 수업 시간대에 막힐 수 있으니 시간 확인하고 가기",
+      "풋살장 입장 방식이 바뀔 수 있어서 당일 재확인이 안전하다",
+      "POSPLEX(유료)는 월 이용권이 있으니 자주 갈 거면 패키지 확인",
+      "장비 상태는 공식 정보와 다를 수 있다 — 직접 가서 확인 추천",
     ],
   },
   benefits: {
@@ -175,26 +137,14 @@ const detailContent = {
       "https://www.postech.ac.kr/kor/university-introduction/campus_map.do?id=88&lat=36.012960118126685&lng=129.320692713",
     guideUrl: "",
     guideLabel: "",
-    audience: [
-      "학생 계정으로 쓸 수 있는 툴을 놓치고 싶지 않은 사람",
-      "혜택 정보를 단톡에서 흘려보내지 않고 모아보고 싶은 사람",
-      "처음 학교 생활 적응에 필요한 디지털 자원을 찾는 사람",
-    ],
     checklist: [
-      "학교 계정으로 접근 가능한 서비스부터 모으기",
-      "무료 / 할인 / 신청 필요 여부를 구분해서 보여주기",
-      "정보 출처와 마지막 확인 날짜를 함께 표기하기",
-    ],
-    tools: [],
-    official: [
-      "학생 신분으로 접근 가능한 플랫폼과 학교 계정 기반 서비스를 우선 정리",
-      "링크, 신청 방식, 필요 계정 정보를 함께 제공",
-      "공식 안내 페이지로 바로 이동할 수 있는 구조 권장",
+      "학교 이메일(@postech.ac.kr)로 로그인 가능한 서비스 먼저 확인",
+      "POVIS에서 신청해야 하는 혜택이 있으니 첫 주에 둘러보기",
     ],
     field: [
-      "단톡에 올라와도 나중에 다시 찾기 어려운 정보가 많다",
-      "혜택은 ‘무엇이 있나’보다 ‘어떻게 바로 쓰나’가 더 중요하다",
-      "처음 주에 한 번에 정리해주는 페이지가 장벽을 낮춘다",
+      "단톡에 올라온 혜택 정보는 나중에 다시 못 찾는 경우가 많다",
+      "혜택은 뭐가 있냐보다 어떻게 바로 쓰냐가 더 중요하다",
+      "첫 주에 한 번 정리해두면 한 학기 내내 쓸 수 있다",
     ],
   },
   life: {
@@ -208,26 +158,15 @@ const detailContent = {
       "https://www.postech.ac.kr/kor/university-introduction/campus_map.do",
     guideUrl: "",
     guideLabel: "",
-    audience: [
-      "기숙사와 주요 시설을 오가는 동선을 빨리 익히고 싶은 사람",
-      "사소하지만 체감 큰 팁을 미리 알고 싶은 사람",
-      "검색으로는 잘 안 나오는 현장성 정보를 원하는 사람",
-    ],
     checklist: [
-      "언덕 회피 동선처럼 체감이 큰 이동 팁 넣기",
-      "현장 메모와 공식 정보 구분하기",
-      "안전성 관련 메모는 별도로 보이게 하기",
-    ],
-    tools: [],
-    official: [
-      "공식 사이트에 없는 정보는 현장 팁으로 명확히 구분",
-      "문의가 필요한 정보는 문의 권장으로 분리",
-      "건물 사용 규칙과 생활 팁을 섞지 않고 구조화",
+      "기숙사 ↔ 주요 건물 동선을 첫 주에 한 번 걸어보기",
+      "캠퍼스맵보다 선배한테 지름길 물어보는 게 빠르다",
     ],
     field: [
-      "기숙사 오는 우회 길은 직접 가본 사람이 알려줘야 체감이 온다",
-      "시설 상태나 불편 포인트는 공식 정보보다 현장 정보 가치가 크다",
-      "처음 온 사람은 ‘지도’보다 ‘이렇게 가면 덜 힘들다’가 더 필요하다",
+      "기숙사에서 도서관 가는 지름길이 따로 있다 — 언덕 안 거치는 루트",
+      "밤에 다니는 길과 낮에 다니는 길이 다르다",
+      "시설 상태나 불편 포인트는 공식 정보보다 직접 가본 사람 말이 정확하다",
+      "처음 온 사람은 지도보다 ‘이렇게 가면 덜 힘들다’가 더 도움 된다",
     ],
     photos: [
       { src: "life-dorm-shortcut", caption: "기숙사 오는 지름길", group: "이동 팁" },
@@ -242,7 +181,6 @@ const navButtons = [...document.querySelectorAll(".nav-btn")];
 const detailLocationText = document.querySelector("#detailLocationText");
 const detailMapLink = document.querySelector("#detailMapLink");
 const detailGuideLink = document.querySelector("#detailGuideLink");
-const detailToolCard = document.querySelector("#detailToolCard");
 
 let previousScreen = "home";
 let currentScreen = "home";
@@ -297,11 +235,8 @@ function renderDetail(key) {
   }
 
   const pairs = [
-    ["#detailAudience", data.audience],
-    ["#detailChecklist", data.checklist],
-    ["#detailTools", data.tools || []],
-    ["#detailOfficial", data.official],
     ["#detailField", data.field],
+    ["#detailChecklist", data.checklist],
   ];
 
   pairs.forEach(([selector, items]) => {
@@ -309,7 +244,6 @@ function renderDetail(key) {
     root.innerHTML = items.map((item) => `<li>${item}</li>`).join("");
   });
 
-  detailToolCard.style.display = data.tools && data.tools.length ? "block" : "none";
   renderPhotoStrip(data.photos);
   renderAppRecommendations(key);
 
