@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>POSTECH Runner Starter Prototype</title>
+    <link rel="stylesheet" href="./styles.css?v=3" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="overview-panel">
+        <p class="eyebrow">Low-Fidelity Prototype</p>
+        <h1>POSTECH Runner Starter</h1>
+        <p class="intro">
+          처음 오면 다 헷갈릴 수 있어서, 필요한 정보부터 차분하게 정리해 주는
+          온보딩형 웹서비스 프로토타입입니다.
+        </p>
+
+        <div class="overview-card">
+          <h2>핵심 흐름</h2>
+          <ol>
+            <li>홈에서 처음 막히는 정보부터 먼저 보여준다.</li>
+            <li>가이드 화면에서 분야별로 차근차근 읽게 한다.</li>
+            <li>상세 화면에서 공식 정보와 현장 팁을 같이 보여준다.</li>
+          </ol>
+        </div>
+
+        <div class="overview-card">
+          <h2>포함한 주제</h2>
+          <ul>
+            <li>도서관 이용과 좌석 규칙</li>
+            <li>인쇄 위치와 결제 방식</li>
+            <li>운동 시설과 예약 포인트</li>
+            <li>학생 신분으로 받을 수 있는 혜택</li>
+            <li>기숙사 이동 동선과 생활 팁</li>
+          </ul>
+        </div>
+
+        <div class="overview-card desktop-note">
+          <h2>디자인 기준</h2>
+          <p>
+            아이폰에서는 바로 쓰는 가이드처럼 보이고, 맥에서는 같은 콘텐츠를 더
+            넓고 편하게 읽을 수 있도록 반응형으로 설계했습니다.
+          </p>
+        </div>
+      </aside>
+
+      <main class="phone-stage">
+        <div class="device-caption">
+          <span class="device-chip">iPhone First</span>
+          <span class="device-chip secondary">Mac Friendly</span>
+        </div>
+
+        <div class="phone-frame">
+          <header class="top-bar">
+            <div>
+              <p class="app-name">POSTART</p>
+              <strong id="screenTitle">처음엔 다 헷갈릴 수 있어요</strong>
+            </div>
+            <button class="ghost-btn" id="backButton" disabled>뒤로</button>
+          </header>
+
+          <section class="screen active" data-screen="home">
+            <div class="hero-card">
+              <p class="label">Runner Starter Pack</p>
+              <h2>처음엔 다 헷갈릴 수 있어요. 그래서 먼저 필요한 것부터 모아봤어요.</h2>
+              <p>
+                검색하지 않아도 되게, 처음 자주 막히는 정보부터 순서대로 보여드립니다.
+              </p>
+              <button class="primary-btn" data-open-screen="guide">처음 쓰는 사람용 가이드 보기</button>
+            </div>
+
+            <section class="content-block">
+              <div class="block-header">
+                <h3>지금 가장 먼저 알아야 하는 것</h3>
+                <span>First Week</span>
+              </div>
+              <div class="card-list">
+                <button class="info-card" data-detail="library">
+                  <strong>도서관, 어디부터 어떻게 쓰면 되는지 정리했어요</strong>
+                  <p>좌석 규칙, 프린트실, 릴렉스존까지 한 번에</p>
+                </button>
+                <button class="info-card" data-detail="printing">
+                  <strong>급할 때 바로 찾을 수 있게 인쇄 위치부터 알려드릴게요</strong>
+                  <p>도서관 5층 프린트실과 결제 방식까지 안내</p>
+                </button>
+                <button class="info-card" data-detail="benefits">
+                  <strong>학생이면 바로 쓸 수 있는 혜택만 먼저 모았어요</strong>
+                  <p>툴, 플랫폼, 계정 혜택을 한곳에서 확인</p>
+                </button>
+              </div>
+            </section>
+
+            <section class="content-block">
+              <div class="block-header">
+                <h3>처음엔 잘 안 보이지만, 알고 나면 편한 정보</h3>
+                <span>Curated</span>
+              </div>
+              <div class="tip-stack">
+                <article class="tip-card">
+                  <strong>도서관은 다 예약석이 아니에요.</strong>
+                  <p>3, 4층 책 있는 곳 좌석은 그냥 쓸 수 있고 나머지는 예약 좌석이 많아요.</p>
+                </article>
+                <article class="tip-card">
+                  <strong>PC존이나 프린트실은 처음엔 잘 안 보일 수 있어요.</strong>
+                  <p>그래서 위치와 이용법을 같이 안내해 주는 구성이 중요합니다.</p>
+                </article>
+                <article class="tip-card">
+                  <strong>운영시간은 공식 정보로, 체감은 현장 정보로 봐야 해요.</strong>
+                  <p>이 서비스는 두 정보를 나눠 보여줘서 처음에도 덜 헷갈리게 만드는 걸 목표로 합니다.</p>
+                </article>
+              </div>
+            </section>
+          </section>
+
+          <section class="screen" data-screen="guide">
+            <section class="content-block">
+              <div class="block-header">
+                <h3>처음 쓰는 사람용 전체 가이드</h3>
+                <span>5 Topics</span>
+              </div>
+              <div class="guide-sections">
+                <button class="guide-card" data-detail="library">
+                  <div>
+                    <p class="category-tag">공간 이용</p>
+                    <strong>도서관 / 그라운드 / 24 커뮤니티센터</strong>
+                  </div>
+                  <p>혼자 집중, 팀플, 휴식에 맞는 공간과 규칙을 차근차근 정리</p>
+                </button>
+                <button class="guide-card" data-detail="printing">
+                  <div>
+                    <p class="category-tag">인쇄</p>
+                    <strong>도서관 프린트실과 대체 동선</strong>
+                  </div>
+                  <p>어디서, 어떻게, 얼마에 인쇄할 수 있는지 먼저 알려드리기</p>
+                </button>
+                <button class="guide-card" data-detail="fitness">
+                  <div>
+                    <p class="category-tag">운동</p>
+                    <strong>체육관 / 풋살장 / POSPLEX</strong>
+                  </div>
+                  <p>무료로 시작할 수 있는 곳과 예약이 필요한 곳을 구분해서 안내</p>
+                </button>
+                <button class="guide-card" data-detail="benefits">
+                  <div>
+                    <p class="category-tag">혜택</p>
+                    <strong>학생 계정과 쓸 수 있는 툴 모음</strong>
+                  </div>
+                  <p>놓치기 쉬운 툴, 플랫폼, 학생 자격 혜택을 모아서 정리</p>
+                </button>
+                <button class="guide-card" data-detail="life">
+                  <div>
+                    <p class="category-tag">생활 팁</p>
+                    <strong>기숙사 이동, 자주 놓치는 규칙, 안전 메모</strong>
+                  </div>
+                  <p>검색보다 누가 먼저 알려줘야 덜 헤매는 팁들</p>
+                </button>
+              </div>
+            </section>
+          </section>
+
+          <section class="screen" data-screen="detail">
+            <article class="detail-hero">
+              <p id="detailCategory" class="label">공간 이용</p>
+              <h2 id="detailTitle">도서관</h2>
+              <p id="detailSummary">
+                처음 오는 러너가 가장 자주 쓰게 되는 공간. 좌석 규칙과 인쇄 위치를 함께 알면 훨씬 편합니다.
+              </p>
+              <div class="location-strip">
+                <div>
+                  <strong id="detailLocationTitle">어디에 있나요?</strong>
+                  <p id="detailLocationText">학교 공식 캠퍼스맵에서 건물명을 검색해 위치를 바로 확인할 수 있어요.</p>
+                </div>
+                <a
+                  id="detailMapLink"
+                  class="map-btn"
+                  href="https://www.postech.ac.kr/kor/university-introduction/campus_map.do"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  캠퍼스 안내에서 보기
+                </a>
+              </div>
+            </article>
+
+            <section class="content-block detail-grid">
+              <article class="detail-card">
+                <h3>이런 사람에게 추천</h3>
+                <ul id="detailAudience"></ul>
+              </article>
+
+              <article class="detail-card">
+                <h3>먼저 알아야 할 것</h3>
+                <ul id="detailChecklist"></ul>
+              </article>
+
+              <article class="detail-card">
+                <h3>공식 정보</h3>
+                <ul id="detailOfficial"></ul>
+              </article>
+
+              <article class="detail-card">
+                <h3>현장 팁</h3>
+                <ul id="detailField"></ul>
+              </article>
+            </section>
+          </section>
+
+          <nav class="bottom-nav">
+            <button class="nav-btn active" data-open-screen="home">홈</button>
+            <button class="nav-btn" data-open-screen="guide">가이드</button>
+            <button class="nav-btn" data-open-screen="detail">상세</button>
+          </nav>
+        </div>
+      </main>
+    </div>
+
+    <script src="./app.js?v=3"></script>
+  </body>
+</html>
