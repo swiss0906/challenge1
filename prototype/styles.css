@@ -1,7 +1,11 @@
 :root {
   --bg: #edf1eb;
-  --bg-accent: #f4ecdc;
+  --bg-soft: #f5f4ef;
+  --spot-a: rgba(213, 228, 214, 0.88);
+  --spot-b: rgba(246, 236, 213, 0.72);
   --ink: #1d2a24;
+  --ink-soft: #4f5852;
+  --ink-subtle: #434d47;
   --muted: #617066;
   --line: #d0d8cf;
   --card: rgba(255, 254, 249, 0.92);
@@ -9,11 +13,42 @@
   --soft: #f6f3eb;
   --accent: #234c3b;
   --accent-soft: #dfe9df;
+  --surface: rgba(249, 246, 238, 0.92);
+  --surface-strong: rgba(249, 246, 238, 0.96);
+  --surface-contrast: rgba(255, 255, 255, 0.8);
+  --chip: rgba(255, 255, 255, 0.68);
+  --shell-border: #bac5bb;
+  --accent-border: rgba(35, 76, 59, 0.18);
   --radius-xl: 28px;
   --radius-lg: 22px;
   --radius-md: 16px;
   --shadow-lg: 0 24px 60px rgba(35, 76, 59, 0.12);
   --shadow-md: 0 10px 28px rgba(35, 76, 59, 0.06);
+}
+
+body[data-theme="dark"] {
+  --bg: #101715;
+  --bg-soft: #18211d;
+  --spot-a: rgba(47, 85, 70, 0.32);
+  --spot-b: rgba(118, 91, 44, 0.22);
+  --ink: #eef4ef;
+  --ink-soft: #d7e1db;
+  --ink-subtle: #c8d2cb;
+  --muted: #9eb0a4;
+  --line: #32413a;
+  --card: rgba(25, 33, 29, 0.88);
+  --card-strong: #1c2420;
+  --soft: #202923;
+  --accent: #8ac8a7;
+  --accent-soft: rgba(42, 62, 52, 0.96);
+  --surface: rgba(18, 25, 22, 0.92);
+  --surface-strong: rgba(18, 25, 22, 0.96);
+  --surface-contrast: rgba(34, 43, 38, 0.92);
+  --chip: rgba(31, 40, 35, 0.88);
+  --shell-border: #32413a;
+  --accent-border: rgba(138, 200, 167, 0.24);
+  --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.32);
+  --shadow-md: 0 10px 28px rgba(0, 0, 0, 0.22);
 }
 
 * {
@@ -28,11 +63,14 @@ body {
 
 body {
   background:
-    radial-gradient(circle at top left, rgba(213, 228, 214, 0.88), transparent 30%),
-    radial-gradient(circle at bottom right, rgba(246, 236, 213, 0.72), transparent 26%),
-    linear-gradient(180deg, var(--bg) 0%, #f5f4ef 100%);
+    radial-gradient(circle at top left, var(--spot-a), transparent 30%),
+    radial-gradient(circle at bottom right, var(--spot-b), transparent 26%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-soft) 100%);
   color: var(--ink);
   font-family: "Pretendard Variable", "Apple SD Gothic Neo", sans-serif;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease;
 }
 
 button,
@@ -66,7 +104,7 @@ a {
   min-height: 30px;
   padding: 0 12px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.68);
+  background: var(--chip);
   border: 1px solid var(--line);
   color: var(--accent);
   font-size: 12px;
@@ -96,9 +134,15 @@ a {
   justify-content: space-between;
   gap: 16px;
   padding: env(safe-area-inset-top, 0px) 20px 14px;
-  background: rgba(249, 246, 238, 0.92);
+  background: var(--surface);
   backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(208, 216, 207, 0.9);
+  border-bottom: 1px solid var(--line);
+}
+
+.top-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .app-name,
@@ -134,8 +178,20 @@ a {
   padding: 10px 14px;
   border-radius: 999px;
   border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.8);
+  background: var(--surface-contrast);
   color: var(--ink);
+}
+
+.theme-toggle {
+  flex-shrink: 0;
+  min-width: 74px;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface-contrast);
+  color: var(--ink);
+  text-align: center;
+  font-weight: 700;
 }
 
 .screen {
@@ -154,7 +210,7 @@ a {
 .tip-card,
 .detail-card {
   background: var(--card);
-  border: 1px solid rgba(208, 216, 207, 0.92);
+  border: 1px solid var(--line);
   box-shadow: var(--shadow-md);
 }
 
@@ -178,7 +234,7 @@ a {
 .info-card p,
 .guide-card p {
   margin: 0;
-  color: #4f5852;
+  color: var(--ink-soft);
   line-height: 1.62;
 }
 
@@ -263,7 +319,7 @@ a {
 }
 
 .location-strip p {
-  color: #365346;
+  color: var(--ink-soft);
 }
 
 .map-btn {
@@ -280,9 +336,9 @@ a {
 }
 
 .map-btn.secondary {
-  background: rgba(255, 255, 255, 0.84);
+  background: var(--surface-contrast);
   color: var(--accent);
-  border: 1px solid rgba(35, 76, 59, 0.18);
+  border: 1px solid var(--accent-border);
 }
 
 .detail-actions {
@@ -298,7 +354,7 @@ a {
 .detail-card ul {
   margin: 0;
   padding-left: 18px;
-  color: #434d47;
+  color: var(--ink-subtle);
   line-height: 1.72;
 }
 
@@ -310,8 +366,8 @@ a {
   grid-template-columns: repeat(3, 1fr);
   gap: 8px;
   padding: 12px 14px calc(14px + env(safe-area-inset-bottom, 0px));
-  border-top: 1px solid rgba(208, 216, 207, 0.92);
-  background: rgba(249, 246, 238, 0.96);
+  border-top: 1px solid var(--line);
+  background: var(--surface-strong);
   backdrop-filter: blur(14px);
 }
 
@@ -321,7 +377,7 @@ a {
   text-align: center;
   border-radius: 16px;
   border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.72);
+  background: var(--surface-contrast);
   color: var(--ink);
   font-weight: 600;
 }
@@ -370,7 +426,7 @@ a {
   }
 
   .overview-card {
-    background: rgba(255, 255, 250, 0.78);
+    background: var(--card);
     border: 1px solid var(--line);
     border-radius: var(--radius-xl);
     padding: 18px 20px;
@@ -408,9 +464,9 @@ a {
   .phone-frame {
     min-height: calc(100vh - 60px);
     max-width: 980px;
-    border: 1px solid #bac5bb;
+    border: 1px solid var(--shell-border);
     border-radius: 34px;
-    background: rgba(249, 246, 238, 0.9);
+    background: var(--surface);
     box-shadow: var(--shadow-lg);
     overflow: hidden;
   }

@@ -176,6 +176,8 @@ const detailContent = {
 
 const screenTitle = document.querySelector("#screenTitle");
 const backButton = document.querySelector("#backButton");
+const themeToggle = document.querySelector("#themeToggle");
+const themeToggleText = document.querySelector("#themeToggleText");
 const screens = [...document.querySelectorAll(".screen")];
 const navButtons = [...document.querySelectorAll(".nav-btn")];
 const detailLocationText = document.querySelector("#detailLocationText");
@@ -186,6 +188,29 @@ const detailToolCard = document.querySelector("#detailToolCard");
 let previousScreen = "home";
 let currentScreen = "home";
 let currentDetail = "library";
+let currentTheme = "light";
+
+function updateThemeButton() {
+  const nextTheme = currentTheme === "light" ? "Dark" : "Light";
+  const ariaLabel =
+    currentTheme === "light" ? "다크 모드로 전환" : "라이트 모드로 전환";
+
+  themeToggleText.textContent = nextTheme;
+  themeToggle.setAttribute("aria-label", ariaLabel);
+}
+
+function applyTheme(theme) {
+  currentTheme = theme;
+  document.body.dataset.theme = theme;
+  localStorage.setItem("postart-theme", theme);
+  updateThemeButton();
+}
+
+function initializeTheme() {
+  const savedTheme = localStorage.getItem("postart-theme");
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  applyTheme(savedTheme || (prefersDark ? "dark" : "light"));
+}
 
 function setScreen(name) {
   previousScreen = currentScreen;
@@ -264,5 +289,10 @@ backButton.addEventListener("click", () => {
   setScreen(target);
 });
 
+themeToggle.addEventListener("click", () => {
+  applyTheme(currentTheme === "light" ? "dark" : "light");
+});
+
+initializeTheme();
 renderDetail(currentDetail);
 setScreen("home");
